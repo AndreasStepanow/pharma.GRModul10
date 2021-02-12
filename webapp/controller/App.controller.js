@@ -1,3 +1,4 @@
+// Version 1.0.0
 sap.ui.define([
 	"./BaseController",
 	"sap/ui/model/json/JSONModel"
