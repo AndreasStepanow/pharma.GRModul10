@@ -1,0 +1,178 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+		"id": "de.arvato.GRModul10",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{General.AppTitle}}",
+		"description": "{{General.AppDescription}}",
+		"sourceTemplate": {
+			"id": "servicecatalog.connectivityComponentForManifest",
+			"version": "0.0.0"
+		},
+		"dataSources": {
+			"APP": {
+				"uri": "app.json",
+				"type": "JSON"
+			},
+			"ZPHA_GR_DEFAULT_SRV": {
+				"uri": "/sap/opu/odata/sap/ZPHA_GR_DEFAULT_SRV/",
+				"type": "OData",
+				"settings": {
+					"localUri": "localService/metadata.xml",
+					"annotations": []
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"flexEnabled": false,
+		"rootView": {
+			"viewName": "de.arvato.GRModul10.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "app"
+		},
+		"dependencies": {
+			"minUI5Version": "1.60",
+			"libs": {
+				"sap.m": {},
+				"sap.ui.core": {},
+				"sap.ui.layout": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "de.arvato.GRModul10.i18n.i18n"
+				}
+			},
+			"erp": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "ZPHA_GR_DEFAULT_SRV",
+				"preload": true
+			},
+			"app": {
+				"type": "sap.ui.model.json.JSONModel",
+				"dataSource": "APP"
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "de.arvato.GRModul10.view",
+				"controlAggregation": "pages",
+				"controlId": "app",
+				"clearControlAggregation": false
+			},
+			"routes": [
+				{
+					"name": "RouteMain",
+					"pattern": "",
+					"target": [
+						"TargetMain"
+					]
+				},
+				{
+					"name": "RouteSumCheck",
+					"pattern": "SumCheck/{huId}",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"TargetSumCheck"
+					]
+				},
+				{
+					"name": "RouteSampleCheck",
+					"pattern": "SampleCheck/{huId}",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"TargetSampleCheck"
+					]
+				},
+				{
+					"name": "RouteFractureCheck",
+					"pattern": "FractureCheck/{huId}",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"TargetFractureCheck"
+					]
+				}
+			],
+			"targets": {
+				"TargetMain": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewId": "Main",
+					"viewName": "Main"
+				},
+				"TargetSumCheck": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "SumCheck",
+					"viewLevel": 2
+				},
+				"TargetSampleCheck": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "SampleCheck",
+					"viewLevel": 2
+				},
+				"TargetFractureCheck": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "FractureCheck",
+					"viewLevel": 2
+				}
+			}
+		}
+	},
+	"sap.platform.abap": {
+		"uri": "/sap/bc/ui5_ui5/sap/zpha_gr_modul10/webapp",
+		"_version": "1.1.0"
+	}
+}

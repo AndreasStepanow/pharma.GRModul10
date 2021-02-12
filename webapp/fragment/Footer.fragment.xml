@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:ndc="sap.ndc" xmlns:libs="de.arvato.GRModul10.libs">
+	<Toolbar>
+		<ToolbarSpacer/>
+		<Text text="{app>/Employee/Name}"></Text>
+		<ToolbarSeparator></ToolbarSeparator>
+		<ToolbarSpacer/>
+		<Button text="{= ${message>/}.length}" visible="{= ${message>/}.length > 0 }" type="Emphasized" press="onMessagePopoverPress"/>
+		<Button press="onGoToSemanticObject" icon="sap-icon://home">
+			<customData>
+				<core:CustomData key="SemanticObject" value="#"></core:CustomData>
+			</customData>
+		</Button>
+		<libs:ScanButton id="idScanButton" inputType="Password" dialogTitle="{i18n>General.ScanUserIdent}" dialogIcon="sap-icon://visits"
+			dialogAbortText="{i18n>General.AbortButton}" inputSuccess="onEmployeeInputSuccess"></libs:ScanButton>
+	</Toolbar>
+</core:FragmentDefinition>

@@ -1,0 +1,45 @@
+{
+	"Employee":{
+		"Name": "",
+		"User": "",
+		"Lgnum": ""
+	},
+	"WorkMode": {
+		"Current": "",
+		"AutomFutureWE": false,
+		"ManuelFutureWE": true,
+		"Independent": false
+	},
+	"State":{
+		"SerialIDInputEditable": false,
+		"MasterCartonInputEditable": false,
+		"RecheckActiv": false,
+		"Text":"Paletten-ID scanen",
+		"PONumberCaptured": false,
+		"SumCheckSuccess": false,
+		"PalletScanSuccess": false,
+		"MasterCartonScanSuccess": false,
+		"SerialNumberScanSuccess": false,
+		"FracturePalIDInputEditable": false,
+		"FractureMasterCartonInputEditable": false,
+		"FractureSerialIDInputEditable": false
+	},
+	"Data": {
+		"Zbetrst":"",
+		"Client":"",
+		"DocItem": "",
+		"Tanum": "",
+		"Lgnum": "",
+		"Article": "",
+		"Ponum": "",
+		"PalID": "",
+		"MacID":"",
+		"SerialID": "",
+		"ReceivedAmount": "0",
+		"ProcessText": "Pal-ID scanen",
+		"CurrentInput": "",
+		"FractureSerial": []
+	},
+	"PalletizingSemanticObjekt": "ZphaGRModul02Sem",
+	"PalletizingAction": "display"
+}

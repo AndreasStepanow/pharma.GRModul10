@@ -1,0 +1,352 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZPHA_GR_DEFAULT_SRV" xml:lang="de" sap:schema-version="1">
+			<EntityType Name="Signature" m:HasStream="true" sap:content-version="1">
+				<Key><PropertyRef Name="CheckId"/></Key><Property Name="CheckId" Type="Edm.Guid" Nullable="false" sap:label="UUID" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Source" Type="Edm.String" MaxLength="128" sap:label="MIME-Type" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="RoughGRDoc" sap:content-version="1">
+				<Key><PropertyRef Name="Zgweno"/></Key><Property Name="Zgweno" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Beleg Grob-WE" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Doctype" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="GrobWE Dokumententyp" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ZgweDocno" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="GrobWE Belegnummer" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="ChargGeo" sap:content-version="1">
+				<Key><PropertyRef Name="Matnr"/><PropertyRef Name="Meinh"/><PropertyRef Name="Charg"/></Key><Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Mandant"/><Property Name="Meinh" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Alt.Mengeneinh." sap:semantics="unit-of-measure"/><Property Name="Charg" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Charge"/><Property Name="Laeng" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="Meabm" sap:label="Länge" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Breit" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="Meabm" sap:label="Breite" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Hoehe" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="Meabm" sap:label="Höhe" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Meabm" Type="Edm.String" MaxLength="3" sap:label="Einheit" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false" sap:semantics="unit-of-measure"/><Property Name="Brgew" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="Gewei" sap:label="Bruttogewicht" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Gewei" Type="Edm.String" MaxLength="3" sap:label="Gewichtseinheit" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/></EntityType>
+			<EntityType Name="Charge" sap:content-version="1">
+				<Key><PropertyRef Name="Matnr"/><PropertyRef Name="Charg"/></Key><Property Name="Ersda" Type="Edm.DateTime" Precision="7" sap:label="Erstellt am" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Materialnummer" sap:updatable="false"
+					sap:sortable="false"/><Property Name="Charg" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Charge" sap:updatable="false" sap:sortable="false"/><Property Name="Ernam" Type="Edm.String" MaxLength="12" sap:label="Angelegt von" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Vfdat" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Verfallsdat/MHD" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Lifnr" Type="Edm.String" MaxLength="10" sap:label="Lieferant" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="Reason" sap:content-version="1">
+				<Key><PropertyRef Name="Field"/><PropertyRef Name="Number"/></Key><Property Name="Field" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Feld" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/><Property Name="Number" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Grund-Nummer" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Text" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Grundtext" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Additional" Type="Edm.String" MaxLength="1" sap:label="Zusatzinfo" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="UnitsOfMeasure" sap:content-version="1">
+				<Key><PropertyRef Name="Matnr"/><PropertyRef Name="Meinh"/></Key><Property Name="Matnr" Type="Edm.String" Nullable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Meinh" Type="Edm.String" Nullable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Umrez" Type="Edm.Decimal" Nullable="false" Precision="31" Scale="0" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Laeng" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Breit" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Hoehe" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Meamb" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Brgew" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Gewei" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/></EntityType>
+			<EntityType Name="LoggerSerial" sap:content-version="1">
+				<Key><PropertyRef Name="CheckId"/><PropertyRef Name="SerialNumber"/></Key><Property Name="CheckId" Type="Edm.Guid" Nullable="false" sap:label="GUID" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="SerialNumber" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Serialnummer" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="Customizing" sap:content-version="1">
+				<Key><PropertyRef Name="Name"/></Key><Property Name="Name" Type="Edm.String" Nullable="false" sap:updatable="false" sap:sortable="false"/><Property Name="Value" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/></EntityType>
+			<EntityType Name="PlombReason" sap:content-version="1">
+				<Key><PropertyRef Name="DomValue"/></Key><Property Name="DomValue" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="DdText" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/></EntityType>
+			<EntityType Name="DocGEO" sap:content-version="1">
+				<Key><PropertyRef Name="Id"/></Key><Property Name="Id" Type="Edm.Guid" Nullable="false" sap:label="GUID" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="ItemId" Type="Edm.Guid" Nullable="false" sap:label="GUID" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Meinh" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Alt.Mengeneinh." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/><Property Name="Laeng" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unit="Meabm" sap:label="Länge" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Breit" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unit="Meabm" sap:label="Breite"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Hoehe" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unit="Meabm" sap:label="Höhe" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Meabm" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Einheit" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/><Property Name="Brgew" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unit="Gewei" sap:label="Bruttogewicht"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Gewei" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Gewichtseinheit" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/><NavigationProperty Name="DocItemSet" Relationship="ZPHA_GR_DEFAULT_SRV.ItemToGEO" FromRole="ToRole_ItemToGEO" ToRole="FromRole_ItemToGEO"/></EntityType>
+			<EntityType Name="TransferOrder" sap:content-version="1">
+				<Key><PropertyRef Name="ItemId"/></Key><Property Name="ItemId" Type="Edm.Guid" Nullable="false" sap:label="UUID" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Lgnum" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Werks" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Matnr" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Bwlvs" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Anfme" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Altme" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="PrintingSuccessful" Type="Edm.Boolean" Nullable="false" sap:label="Flag" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Tanum" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="InReserve" Type="Edm.Boolean" Nullable="false" sap:label="Flag" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Printer" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Drucker" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="TanumBruch" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/></EntityType>
+			<EntityType Name="Material" sap:content-version="1">
+				<Key><PropertyRef Name="Matnr"/><PropertyRef Name="Werks"/></Key><Property Name="Matnr" Type="Edm.String" Nullable="false" sap:updatable="false" sap:sortable="false"/><Property Name="Werks" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="Maktx" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Xchpf" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="StockAvailable" Type="Edm.Boolean" Nullable="false" sap:label="Flag" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="Barcode" sap:content-version="1">
+				<Key><PropertyRef Name="Code"/></Key><Property Name="Code" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Matnr" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Gtin" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Batch" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="ExpiryDate" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="SerialNumber" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="MatnrList" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/></EntityType>
+			<EntityType Name="MaterialImage" m:HasStream="true" sap:content-version="1">
+				<Key><PropertyRef Name="Matnr"/></Key><Property Name="Matnr" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="DocType" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="MimeType" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Filename" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/></EntityType>
+			<EntityType Name="DomainValue" sap:content-version="1">
+				<Key><PropertyRef Name="Value"/></Key><Property Name="Name" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="Value" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Text" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/></EntityType>
+			<EntityType Name="PO" sap:content-version="1">
+				<Key><PropertyRef Name="PONumber"/></Key><Property Name="PONumber" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><NavigationProperty Name="POItemSet" Relationship="ZPHA_GR_DEFAULT_SRV.POToItem" FromRole="FromRole_POToItem" ToRole="ToRole_POToItem"/></EntityType>
+			<EntityType Name="POItem" sap:content-version="1">
+				<Key><PropertyRef Name="PONumber"/><PropertyRef Name="ItemNumber"/></Key><Property Name="PONumber" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="ItemNumber" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Matnr" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Charg" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Menge" Type="Edm.Double" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/></EntityType>
+			<EntityType Name="Check" sap:content-version="1">
+				<Key><PropertyRef Name="CheckId"/></Key><Property Name="Accordance" Type="Edm.String" MaxLength="1" sap:label="Ja/Nein" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="CheckId" Type="Edm.Guid" Nullable="false" sap:label="GUID" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="CmrRef" Type="Edm.String" MaxLength="30" sap:label="CMR-Referenz" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/><Property Name="CombiGr" Type="Edm.String" MaxLength="1" sap:label="Ja/Nein" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="CommentarPal" Type="Edm.String" MaxLength="80" sap:label="Kommentar (Palettierung)" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Ernam" Type="Edm.String" MaxLength="12" sap:label="Angelegt von" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/><Property Name="ExistColliCntCom" Type="Edm.String" MaxLength="80" sap:label="Kommentar zum Feld: EXIST_COLLI_CNT" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ExistColliSttCom" Type="Edm.String" MaxLength="80" sap:label="Kommentar zum Feld: EXIST_COLLI_STT" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ExistColliStto" Type="Edm.String" MaxLength="80" sap:label="Kommentar zum Feld: EXIST_COLLI_STT" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ExistPlombOcom" Type="Edm.String" MaxLength="80" sap:label="Sonstige Gruende zum Feld: EXIST_PLOMB" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="GeodataCrct" Type="Edm.String" MaxLength="1" sap:label="Ja/Nein" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="GrdocChecked" Type="Edm.String" MaxLength="1" sap:label="Ja/Nein" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="GrdocCheckedCom" Type="Edm.String" MaxLength="80" sap:label="Kommentar zum Feld: GRDOC_CHECKED" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="NameInternPal" Type="Edm.String" MaxLength="35" sap:label="Nachname" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="SealChecked" Type="Edm.String" MaxLength="1" sap:label="Ja/Nein" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="SealCheckedCom" Type="Edm.String" MaxLength="80" sap:label="Kommentar zum Feld: SEAL_CHECKED" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Spoolnr" Type="Edm.String" MaxLength="10" sap:label="Spool-Nummer" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="State" Type="Edm.String" MaxLength="2" sap:label="Pharma: WE-Prüfung Status" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/><Property Name="StateCom" Type="Edm.String" MaxLength="80" sap:label="Kommentar zum Feld: STATE" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="TempChecked" Type="Edm.String" MaxLength="1" sap:label="Ja/Nein" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Zbetrst" Type="Edm.String" MaxLength="3" sap:label="Standort" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/><Property Name="Aedat" Type="Edm.DateTime" Precision="7" sap:label="Geändert am" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Aenam" Type="Edm.String" MaxLength="12" sap:label="Geändert von" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Client" Type="Edm.String" MaxLength="3" sap:label="Kunde" sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="Commentar" Type="Edm.String" MaxLength="80" sap:label="COMMENT" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Erdat" Type="Edm.DateTime" Precision="7" sap:label="Angelegt am" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/><Property Name="ErdatPal" Type="Edm.DateTime" Precision="7" sap:label="Angelegt am" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="ExistCmr" Type="Edm.String" MaxLength="1" sap:label="TRUE" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="ExistColliCnt" Type="Edm.String" MaxLength="1" sap:label="TRUE" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="ExistColliStt" Type="Edm.String" MaxLength="1" sap:label="TRUE" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="ExistPlomb" Type="Edm.String" MaxLength="1" sap:label="TRUE" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="ExistPlombCom" Type="Edm.String" MaxLength="80" sap:label="COMMENT" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="ExistTempPrint" Type="Edm.String" MaxLength="1" sap:label="TRUE" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="ExistTLog" Type="Edm.String" MaxLength="1" sap:label="TRUE" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="ExistTLogCom" Type="Edm.String" MaxLength="80" sap:label="COMMENT" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="NameExtern" Type="Edm.String" MaxLength="35" sap:label="Nachname" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="NameIntern" Type="Edm.String" MaxLength="35" sap:label="Nachname" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="PalettHt" Type="Edm.String" MaxLength="1" sap:label="Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="PalettHtCom0" Type="Edm.String" MaxLength="2" sap:label="Grund-Nummer" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="PalettHtCom1" Type="Edm.String" MaxLength="2" sap:label="Grund-Nummer" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="PalettHtCom2" Type="Edm.String" MaxLength="2" sap:label="Grund-Nummer" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="PalettHtCom3" Type="Edm.String" MaxLength="2" sap:label="Grund-Nummer" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="PalettHtCom4" Type="Edm.String" MaxLength="2" sap:label="Grund-Nummer" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="PalettHtOcom" Type="Edm.String" MaxLength="80" sap:label="Kommentar zum Feld: PALETT_HT" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Reference" Type="Edm.String" MaxLength="30" sap:label="Referenz (falls CMR nicht vorhanden)" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="Spedition" Type="Edm.String" MaxLength="30" sap:label="Spedition" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="StateDate" Type="Edm.DateTime" Precision="7" sap:label="Statusdatum" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="TempCheckedCom" Type="Edm.String" MaxLength="80" sap:label="Kommentar zum Feld: TEMP_CHECKED" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Temperature0" Type="Edm.String" MaxLength="1" sap:label="Temperaturbereich" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/><Property Name="Temperature1" Type="Edm.String" MaxLength="1" sap:label="Temperaturbereich" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/><Property Name="Temperature2" Type="Edm.String" MaxLength="1" sap:label="Temperaturbereich" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/><Property Name="Temperature3" Type="Edm.String" MaxLength="1" sap:label="Temperaturbereich" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/><Property Name="Temperature4" Type="Edm.String" MaxLength="1" sap:label="Temperaturbereich" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/><Property Name="TemperatureCom" Type="Edm.String" MaxLength="80" sap:label="COMMENT" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="TimeOfClosing" Type="Edm.Time" Precision="0" sap:label="Uhrzeit" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="TimeOfOpening" Type="Edm.Time" Precision="0" sap:label="Uhrzeit" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="VehicleReg" Type="Edm.String" MaxLength="15" sap:label="Fahrzeugkennzeichen" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Zgweno" Type="Edm.String" MaxLength="10" sap:label="Beleg Grob-WE" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/><NavigationProperty Name="LoggerSerialSet" Relationship="ZPHA_GR_DEFAULT_SRV.CheckToLoggerSerial" FromRole="FromRole_CheckToLoggerSerial"
+					ToRole="ToRole_CheckToLoggerSerial"/><NavigationProperty Name="RoughGRSet" Relationship="ZPHA_GR_DEFAULT_SRV.RoughGRToCheck" FromRole="ToRole_RoughGRToCheck"
+					ToRole="FromRole_RoughGRToCheck"/><NavigationProperty Name="DocItemSet" Relationship="ZPHA_GR_DEFAULT_SRV.CheckToItem" FromRole="FromRole_CheckToItem"
+					ToRole="ToRole_CheckToItem"/><NavigationProperty Name="DocHUSet" Relationship="ZPHA_GR_DEFAULT_SRV.CheckToHU" FromRole="FromRole_CheckToHU" ToRole="ToRole_CheckToHU"/></EntityType>
+			<EntityType Name="DocItem" sap:content-version="1">
+				<Key><PropertyRef Name="ItemId"/></Key><Property Name="Classification" Type="Edm.String" MaxLength="1" sap:label="Klassifizierung (QA); Classification" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="State" Type="Edm.String" MaxLength="2" sap:label="Status" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="StateDate" Type="Edm.DateTime" Precision="7" sap:label="Datum (QA)" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="ExistGeodata" Type="Edm.String" MaxLength="1" sap:label="GEO-Daten vorhanden" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/><Property Name="Durability" Type="Edm.String" MaxLength="1" sap:label="Haltbarkeit (QA); Durability" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="ItemId" Type="Edm.Guid" Nullable="false" sap:label="GUID" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="CheckId" Type="Edm.Guid" Nullable="false" sap:label="GUID" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="SerializationFlag" Type="Edm.String" MaxLength="1" sap:label="Serialisierungsflag gesetzt (QA); SerializationFlag"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Benum" Type="Edm.String" MaxLength="10" sap:label="Bedarfsnummer" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="MaterialSerialized" Type="Edm.String" MaxLength="1" sap:label="Material serialisiert (QA); MaterialSerialized"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="BookingFree" Type="Edm.String" MaxLength="1" sap:label="Buchung in den freien Bestand (QA); Booking" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Ernam" Type="Edm.String" MaxLength="12" sap:label="Angelegt von" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Erdat" Type="Edm.DateTime" Precision="7" sap:label="Angelegt am" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Erzet" Type="Edm.Time" Precision="0" sap:label="Uhrzeit" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Matnr" Type="Edm.String" MaxLength="18" sap:label="Material" sap:updatable="false" sap:sortable="false"/><Property Name="Maktx" Type="Edm.String" MaxLength="40" sap:label="Bezeichnung" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="NameIntern" Type="Edm.String" Nullable="false" MaxLength="35" sap:label="Nachname" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Charg" Type="Edm.String" MaxLength="10" sap:label="Charge" sap:updatable="false" sap:sortable="false"/><Property Name="Vfdat" Type="Edm.DateTime" Precision="7" sap:label="Verfallsdat/MHD" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Serial" Type="Edm.String" MaxLength="1" sap:label="TRUE" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Verify" Type="Edm.String" MaxLength="1" sap:label="TRUE" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="GrRef" Type="Edm.String" MaxLength="30" sap:label="Referenznummer" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/><Property Name="Others" Type="Edm.String" MaxLength="80" sap:label="OTHERS" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="ArticleCrct" Type="Edm.String" MaxLength="1" sap:label="Artikeldaten korrekt" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="GeodataCrct" Type="Edm.String" MaxLength="1" sap:label="Geo-Daten korrekt" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Accordance" Type="Edm.String" MaxLength="1" sap:label="Übereinstimmung variable Daten Produkt/Versandkartonetiket"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="DocGEOSet" Relationship="ZPHA_GR_DEFAULT_SRV.ItemToGEO" FromRole="FromRole_ItemToGEO" ToRole="ToRole_ItemToGEO"/></EntityType>
+			<EntityType Name="DocHU" sap:content-version="1">
+				<Key><PropertyRef Name="HuId"/></Key><Property Name="CheckId" Type="Edm.Guid" Nullable="false" sap:label="GUID" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Bruch" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Bruchpalette" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Mixed" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Mischpalette" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Tanum" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="TA-Nummer" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="HuId" Type="Edm.Guid" Nullable="false" sap:label="GUID" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="ItemId" Type="Edm.Guid" Nullable="false" sap:label="GUID" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Letyp" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="LagereinhTyp" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Anzhu" Type="Edm.Byte" Nullable="false" sap:label="Anzahl HU" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Vemng" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="3" sap:unit="Vemeh" sap:label="verpackte Menge"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Vemeh" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="HU Pos.ME" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/><NavigationProperty Name="CheckSet" Relationship="ZPHA_GR_DEFAULT_SRV.CheckToHU" FromRole="ToRole_CheckToHU" ToRole="FromRole_CheckToHU"/></EntityType>
+			<EntityType Name="SapClient" sap:content-version="1">
+				<Key><PropertyRef Name="Mandt"/></Key><Property Name="Mandt" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="Mtext" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><Property Name="WhKind" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/><NavigationProperty Name="RoughGRSet" Relationship="ZPHA_GR_DEFAULT_SRV.SAPClientToRougrGR" FromRole="FromRole_SAPClientToRougrGR"
+					ToRole="ToRole_SAPClientToRougrGR"/></EntityType>
+			<EntityType Name="User" sap:content-version="1">
+				<Key><PropertyRef Name="Username"/></Key><Property Name="Address" Type="ZPHA_GR_DEFAULT_SRV.Address" Nullable="false"/><Property Name="Username" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Benutzer" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Ident" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="Lgnum" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false"
+					sap:filterable="false"/></EntityType>
+			<EntityType Name="RoughGR" sap:content-version="1">
+				<Key><PropertyRef Name="Zgweno"/></Key><Property Name="Zgweno" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Beleg Grob-WE" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Mandt" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Mandant" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/><Property Name="MixPaletts" Type="Edm.Int16" Nullable="false" sap:label="Anzahl Mischpaletten" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="TotPaletts" Type="Edm.Int16" Nullable="false" sap:label="Anzahl Paletten" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Zbetrst" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Standort" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/><Property Name="Clarcase" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="GrobWE Klärungsfälle" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="AdvStatus" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="GrobWE Avisier.kennz" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Erdat" Type="Edm.DateTime" Nullable="false" Precision="7" sap:label="Angelegt am" sap:creatable="false"
+					sap:updatable="false" sap:filterable="false"/><Property Name="Erzet" Type="Edm.Time" Nullable="false" Precision="0" sap:label="Uhrzeit" sap:creatable="false" sap:updatable="false"
+					sap:filterable="false"/><Property Name="Ernam" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Angelegt von" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Userid" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Scanuser" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="50" sap:label="Name" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Remark" Type="Edm.String" Nullable="false" MaxLength="1024" sap:label="Kommentar" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="RoughGRDocSet" Relationship="ZPHA_GR_DEFAULT_SRV.RoughGRToDoc" FromRole="FromRole_RoughGRToDoc"
+					ToRole="ToRole_RoughGRToDoc"/><NavigationProperty Name="Check" Relationship="ZPHA_GR_DEFAULT_SRV.RoughGRToCheck" FromRole="FromRole_RoughGRToCheck"
+					ToRole="ToRole_RoughGRToCheck"/></EntityType>
+			<EntityType Name="SUType" sap:content-version="1">
+				<Key><PropertyRef Name="Lgnum"/><PropertyRef Name="Letyp"/></Key><Property Name="Lgnum" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Lagernummer" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false"/><Property Name="Letyp" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="LagereinhTyp" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/><Property Name="Letyt" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Bezeichnung LET" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<ComplexType Name="Address"><Property Name="Firstname" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Vorname" sap:creatable="false" sap:updatable="false"
+				sap:sortable="false" sap:filterable="false"/><Property Name="Lastname" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Nachname" sap:creatable="false" sap:updatable="false"
+				sap:sortable="false" sap:filterable="false"/><Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Name" sap:creatable="false" sap:updatable="false"
+				sap:sortable="false" sap:filterable="false"/><Property Name="Name2" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Name 2" sap:creatable="false" sap:updatable="false"
+				sap:sortable="false" sap:filterable="false"/><Property Name="Name3" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Name 3" sap:creatable="false" sap:updatable="false"
+				sap:sortable="false" sap:filterable="false"/><Property Name="Name4" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Name 4" sap:creatable="false" sap:updatable="false"
+				sap:sortable="false" sap:filterable="false"/><Property Name="Sort1" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Suchbegriff 1" sap:creatable="false"
+				sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Sort2" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Suchbegriff 2" sap:creatable="false"
+				sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="EMail" Type="Edm.String" Nullable="false" MaxLength="241" sap:label="E-Mail-Adresse" sap:creatable="false"
+				sap:updatable="false" sap:sortable="false" sap:filterable="false"/></ComplexType>
+			<ComplexType Name="Islocked"><Property Name="WrngLogon" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Benutzersperre" sap:creatable="false"
+				sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="LocalLock" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Benutzersperre" sap:creatable="false"
+				sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="GlobLock" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Benutzersperre" sap:creatable="false"
+				sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="NoUserPw" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Benutzersperre" sap:creatable="false"
+				sap:updatable="false" sap:sortable="false" sap:filterable="false"/></ComplexType>
+			<Association Name="RoughGRToDoc" sap:content-version="1"><End Type="ZPHA_GR_DEFAULT_SRV.RoughGR" Multiplicity="*" Role="FromRole_RoughGRToDoc"/><End Type="ZPHA_GR_DEFAULT_SRV.RoughGRDoc" Multiplicity="*" Role="ToRole_RoughGRToDoc"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_RoughGRToDoc"><PropertyRef Name="Zgweno"/></Principal>
+					<Dependent Role="ToRole_RoughGRToDoc"><PropertyRef Name="Zgweno"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="RoughGRToCheck" sap:content-version="1"><End Type="ZPHA_GR_DEFAULT_SRV.RoughGR" Multiplicity="*" Role="FromRole_RoughGRToCheck"/><End Type="ZPHA_GR_DEFAULT_SRV.Check" Multiplicity="0..1" Role="ToRole_RoughGRToCheck"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_RoughGRToCheck"><PropertyRef Name="Zgweno"/></Principal>
+					<Dependent Role="ToRole_RoughGRToCheck"><PropertyRef Name="Zgweno"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="POToItem" sap:content-version="1"><End Type="ZPHA_GR_DEFAULT_SRV.PO" Multiplicity="*" Role="FromRole_POToItem"/><End Type="ZPHA_GR_DEFAULT_SRV.POItem" Multiplicity="*" Role="ToRole_POToItem"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_POToItem"><PropertyRef Name="PONumber"/></Principal>
+					<Dependent Role="ToRole_POToItem"><PropertyRef Name="PONumber"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="SAPClientToRougrGR" sap:content-version="1"><End Type="ZPHA_GR_DEFAULT_SRV.SapClient" Multiplicity="1" Role="FromRole_SAPClientToRougrGR"/><End Type="ZPHA_GR_DEFAULT_SRV.RoughGR" Multiplicity="*" Role="ToRole_SAPClientToRougrGR"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_SAPClientToRougrGR"><PropertyRef Name="Mandt"/></Principal>
+					<Dependent Role="ToRole_SAPClientToRougrGR"><PropertyRef Name="Mandt"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="ItemToGEO" sap:content-version="1"><End Type="ZPHA_GR_DEFAULT_SRV.DocItem" Multiplicity="*" Role="FromRole_ItemToGEO"/><End Type="ZPHA_GR_DEFAULT_SRV.DocGEO" Multiplicity="*" Role="ToRole_ItemToGEO"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_ItemToGEO"><PropertyRef Name="ItemId"/></Principal>
+					<Dependent Role="ToRole_ItemToGEO"><PropertyRef Name="ItemId"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="CheckToHU" sap:content-version="1"><End Type="ZPHA_GR_DEFAULT_SRV.Check" Multiplicity="*" Role="FromRole_CheckToHU"/><End Type="ZPHA_GR_DEFAULT_SRV.DocHU" Multiplicity="*" Role="ToRole_CheckToHU"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_CheckToHU"><PropertyRef Name="CheckId"/></Principal>
+					<Dependent Role="ToRole_CheckToHU"><PropertyRef Name="CheckId"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="CheckToItem" sap:content-version="1"><End Type="ZPHA_GR_DEFAULT_SRV.Check" Multiplicity="*" Role="FromRole_CheckToItem"/><End Type="ZPHA_GR_DEFAULT_SRV.DocItem" Multiplicity="*" Role="ToRole_CheckToItem"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_CheckToItem"><PropertyRef Name="CheckId"/></Principal>
+					<Dependent Role="ToRole_CheckToItem"><PropertyRef Name="CheckId"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="CheckToLoggerSerial" sap:content-version="1"><End Type="ZPHA_GR_DEFAULT_SRV.Check" Multiplicity="*" Role="FromRole_CheckToLoggerSerial"/><End Type="ZPHA_GR_DEFAULT_SRV.LoggerSerial" Multiplicity="*" Role="ToRole_CheckToLoggerSerial"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_CheckToLoggerSerial"><PropertyRef Name="CheckId"/></Principal>
+					<Dependent Role="ToRole_CheckToLoggerSerial"><PropertyRef Name="CheckId"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="ZPHA_GR_DEFAULT_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="UserSet" EntityType="ZPHA_GR_DEFAULT_SRV.User" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/><EntitySet Name="RoughGRSet" EntityType="ZPHA_GR_DEFAULT_SRV.RoughGR" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:content-version="1"/><EntitySet Name="SUTypeSet" EntityType="ZPHA_GR_DEFAULT_SRV.SUType" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/><EntitySet Name="SignatureCollection" EntityType="ZPHA_GR_DEFAULT_SRV.Signature" sap:content-version="1"/><EntitySet Name="RoughGRDocSet" EntityType="ZPHA_GR_DEFAULT_SRV.RoughGRDoc" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="ChargGeoSet" EntityType="ZPHA_GR_DEFAULT_SRV.ChargGeo" sap:deletable="false" sap:searchable="true"
+				sap:requires-filter="true" sap:content-version="1"/><EntitySet Name="ChargeSet" EntityType="ZPHA_GR_DEFAULT_SRV.Charge" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="ReasonSet" EntityType="ZPHA_GR_DEFAULT_SRV.Reason" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="UnitsOfMeasureSet" EntityType="ZPHA_GR_DEFAULT_SRV.UnitsOfMeasure" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="LoggerSerialSet" EntityType="ZPHA_GR_DEFAULT_SRV.LoggerSerial" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="CustomizingSet" EntityType="ZPHA_GR_DEFAULT_SRV.Customizing" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/><EntitySet Name="PlombReasonSet" EntityType="ZPHA_GR_DEFAULT_SRV.PlombReason" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="DocGEOSet" EntityType="ZPHA_GR_DEFAULT_SRV.DocGEO" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="TransferOrderSet" EntityType="ZPHA_GR_DEFAULT_SRV.TransferOrder" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="MaterialSet" EntityType="ZPHA_GR_DEFAULT_SRV.Material" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="BarcodeSet" EntityType="ZPHA_GR_DEFAULT_SRV.Barcode" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="MaterialImageCollection" EntityType="ZPHA_GR_DEFAULT_SRV.MaterialImage" sap:content-version="1"/><EntitySet Name="DomainValueSet" EntityType="ZPHA_GR_DEFAULT_SRV.DomainValue" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="POSet" EntityType="ZPHA_GR_DEFAULT_SRV.PO" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="POItemSet" EntityType="ZPHA_GR_DEFAULT_SRV.POItem" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="CheckSet" EntityType="ZPHA_GR_DEFAULT_SRV.Check" sap:deletable="false" sap:searchable="true" sap:requires-filter="true"
+				sap:content-version="1"/><EntitySet Name="DocItemSet" EntityType="ZPHA_GR_DEFAULT_SRV.DocItem" sap:updatable="false" sap:deletable="false" sap:pageable="false"
+				sap:requires-filter="true" sap:content-version="1"/><EntitySet Name="DocHUSet" EntityType="ZPHA_GR_DEFAULT_SRV.DocHU" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/><EntitySet Name="SapClientSet" EntityType="ZPHA_GR_DEFAULT_SRV.SapClient" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:addressable="false" sap:content-version="1"/>
+				<AssociationSet Name="RoughGR_to_SAPClientSet" Association="ZPHA_GR_DEFAULT_SRV.SAPClientToRougrGR" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="SapClientSet" Role="FromRole_SAPClientToRougrGR"/><End EntitySet="RoughGRSet" Role="ToRole_SAPClientToRougrGR"/></AssociationSet>
+				<AssociationSet Name="CheckToItemSet" Association="ZPHA_GR_DEFAULT_SRV.CheckToItem" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="CheckSet" Role="FromRole_CheckToItem"/><End EntitySet="DocItemSet" Role="ToRole_CheckToItem"/></AssociationSet>
+				<AssociationSet Name="RoughGRToDocSet" Association="ZPHA_GR_DEFAULT_SRV.RoughGRToDoc" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="RoughGRSet" Role="FromRole_RoughGRToDoc"/><End EntitySet="RoughGRDocSet" Role="ToRole_RoughGRToDoc"/></AssociationSet>
+				<AssociationSet Name="CheckToLoggerSerialSet" Association="ZPHA_GR_DEFAULT_SRV.CheckToLoggerSerial" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="CheckSet" Role="FromRole_CheckToLoggerSerial"/><End EntitySet="LoggerSerialSet" Role="ToRole_CheckToLoggerSerial"/></AssociationSet>
+				<AssociationSet Name="RoughGRToCheckSet" Association="ZPHA_GR_DEFAULT_SRV.RoughGRToCheck" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="RoughGRSet" Role="FromRole_RoughGRToCheck"/><End EntitySet="CheckSet" Role="ToRole_RoughGRToCheck"/></AssociationSet>
+				<AssociationSet Name="POToItemSet" Association="ZPHA_GR_DEFAULT_SRV.POToItem" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="POSet" Role="FromRole_POToItem"/><End EntitySet="POItemSet" Role="ToRole_POToItem"/></AssociationSet>
+				<AssociationSet Name="CheckToHUSet" Association="ZPHA_GR_DEFAULT_SRV.CheckToHU" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="CheckSet" Role="FromRole_CheckToHU"/><End EntitySet="DocHUSet" Role="ToRole_CheckToHU"/></AssociationSet>
+				<AssociationSet Name="ItemToGEOSet" Association="ZPHA_GR_DEFAULT_SRV.ItemToGEO" sap:creatable="false" sap:updatable="false"
+					sap:deletable="false" sap:content-version="1"><End EntitySet="DocItemSet" Role="FromRole_ItemToGEO"/><End EntitySet="DocGEOSet" Role="ToRole_ItemToGEO"/></AssociationSet>
+				<FunctionImport Name="PrintRoughGR" ReturnType="ZPHA_GR_DEFAULT_SRV.RoughGR" EntitySet="RoughGRSet" m:HttpMethod="GET"
+					sap:action-for="ZPHA_GR_DEFAULT_SRV.RoughGR"><Parameter Name="Zgweno" Type="Edm.String" Mode="In" MaxLength="10"/><Parameter Name="Printer" Type="Edm.String" Mode="In"/></FunctionImport>
+				<FunctionImport Name="PrintCheck" ReturnType="ZPHA_GR_DEFAULT_SRV.Check" EntitySet="CheckSet" m:HttpMethod="GET"
+					sap:action-for="ZPHA_GR_DEFAULT_SRV.Check"><Parameter Name="Printer" Type="Edm.String" Mode="In"/><Parameter Name="CheckId" Type="Edm.Guid" Mode="In"/></FunctionImport>
+				<FunctionImport Name="PrintTransferOrder" ReturnType="ZPHA_GR_DEFAULT_SRV.TransferOrder" EntitySet="TransferOrderSet" m:HttpMethod="GET"><Parameter Name="Printer" Type="Edm.String" Mode="In"/><Parameter Name="Mandt" Type="Edm.String" Mode="In"/><Parameter Name="Tanum" Type="Edm.String" Mode="In"/></FunctionImport>
+			</EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZPHA_GR_DEFAULT_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZPHA_GR_DEFAULT_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

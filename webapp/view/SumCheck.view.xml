@@ -1,0 +1,31 @@
+<mvc:View controllerName="de.arvato.GRModul10.controller.SumCheck" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:tnt="sap.tnt">
+	<Page id="page" title="SumCheck" showNavButton="true" navButtonPress="onNavButtonPress">
+		<content>
+			<Panel visible="{= ${erp>TransferOrder/Kquit} === 'X'}">
+				<FlexBox justifyContent="Center">
+					<items>
+						<ToggleButton press="onRecheckButtonPress" text="{i18n>SumCheck.Recheck}" pressed="false"></ToggleButton>
+					</items>
+				</FlexBox>
+			</Panel>
+			<Panel>
+				<f:SimpleForm >
+					<f:content>
+						<Label text="{i18n>SumCheck.CurrentAmount} {i18n>SumCheck.UnitOfMeasure}"/>
+						<Input id="idCapturedAmountInput" value="{path: 'erp>Vemng', formatter: '.formatter.toFloat'}" editable="false"/>
+						<core:Icon src="sap-icon://accept" class="sapUiSmallMargin"></core:Icon>
+						<Label text="{i18n>SumCheck.ReceivedAmount} {i18n>SumCheck.UnitOfMeasure}"/>
+						<Input value="{app>/Data/ReceivedAmount}" editable="false"/>
+						<core:Icon src="sap-icon://accept" visible="{app>/State/SumCheckSuccess}" class="sapUiSmallMargin"></core:Icon>
+						<Label text="{i18n>SumCheck.Pallet}"/>
+						<Input id="idPalIDInput" value="{app>/Data/PalID}" submit="onPalIDInputSubmit"></Input>
+					</f:content>
+				</f:SimpleForm>
+			</Panel>
+		</content>
+		<footer>
+			<core:Fragment fragmentName="de.arvato.GRModul10.fragment.Footer" type="XML"/>
+		</footer>
+	</Page>
+</mvc:View>

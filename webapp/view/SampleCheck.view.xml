@@ -1,0 +1,38 @@
+<mvc:View controllerName="de.arvato.GRModul10.controller.SampleCheck" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:tnt="sap.tnt">
+	<Page id="page" title="SampleCheck" showNavButton="true" navButtonPress="onNavButtonPress">
+		<headerContent></headerContent>
+		<content>
+			<!--Panel>
+				<FlexBox justifyContent="Center">
+					<items>
+						<TileContent footerColor="Good" footer="{app>}">
+							<NewsContent contentText="{app>/State/Text}" subheader="{i18n>General.PONummer}:{app>/Data/Ponum}"/>
+						</TileContent>
+					</items>
+				</FlexBox>
+			</Panel-->
+			<Panel>
+				<f:SimpleForm >
+					<f:content>
+						<Label text="{i18n>SumCheck.Pallet}"/>
+						<Input id="idPalIDInput" value="{app>/Data/PalID}" submit="onPalIDInputSubmit" editable="false"></Input>
+						<Label text="{i18n>SumCheck.MasterCarton}"/>
+						<!--Input id="idMacIDInput" value="{app>/Data/MacID}" submit="onMacIDInputSubmit"
+							editable="{= ${app>/State/PalletScanSuccess} === true &amp;&amp; ${app>/State/MasterCartonScanSuccess} === false}"/-->
+						<Input id="idMacIDInput" value="{app>/Data/MacID}" submit="onMacIDInputSubmit"
+							editable="{app>/State/MasterCartonInputEditable}"/>
+						<Label text="{i18n>SumCheck.SerialNumber}"/>
+						<!--Input id="idSerialIDInput" value="{app>/Data/SerialID}" submit="onSerialIDInputSubmit"
+							editable="{= ${app>/State/PalletScanSuccess} === true &amp;&amp; ${app>/State/MasterCartonScanSuccess} === true}"/-->
+						<Input id="idSerialIDInput" value="{app>/Data/SerialID}" submit="onSerialIDInputSubmit"
+							editable="{app>/State/SerialIDInputEditable}"/>
+					</f:content>
+				</f:SimpleForm>
+			</Panel>
+		</content>
+		<footer>
+			<core:Fragment fragmentName="de.arvato.GRModul10.fragment.Footer" type="XML"/>
+		</footer>
+	</Page>
+</mvc:View>

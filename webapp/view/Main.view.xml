@@ -1,0 +1,72 @@
+<mvc:View controllerName="de.arvato.GRModul10.controller.Main" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	
+	<Page id="page" title="{i18n>General.Title}" showNavButton="fasle">
+
+		<content>
+			<Panel visible="{app>/WorkMode/ManuelFutureWE}">
+				<FlexBox justifyContent="Center">
+					<items>
+						<Label text="{i18n>Main.TransportOrder}">
+							<layoutData>
+								<FlexItemData growFactor="1"/>
+							</layoutData>
+						</Label>
+					</items>
+				</FlexBox>
+				<FlexBox justifyContent="Center">
+					<items>
+						<Input id="idTanumInput" value="{app>/Data/Tanum}" submit="onTanumSubmit">
+							<layoutData>
+								<FlexItemData growFactor="1"/>
+							</layoutData>
+						</Input>
+					</items>
+				</FlexBox>
+			</Panel>
+			<!--Panel visible="{app>/WorkMode/Independent}">
+				<FlexBox justifyContent="Center">
+					<items>
+						<Label text="{i18n>Main.Client}">
+							<layoutData>
+								<FlexItemData growFactor="1"/>
+							</layoutData>
+						</Label>
+					</items>
+				</FlexBox>
+				<FlexBox justifyContent="Center">
+					<items>
+						<ComboBox items="{erp>/SapClientSet}">
+							<core:Item key="{erp>Mandt}" text="{erp>Mandt} {erp>Mtext}"></core:Item>
+							<layoutData>
+								<FlexItemData growFactor="1"/>
+							</layoutData>
+						</ComboBox>
+					</items>
+				</FlexBox>
+				<FlexBox justifyContent="Center">
+					<items>
+						<Label text="{i18n>Main.Article}">
+							<layoutData>
+								<FlexItemData growFactor="1"/>
+							</layoutData>
+						</Label>
+					</items>
+				</FlexBox>
+				<FlexBox justifyContent="Center">
+					<items>
+						<Input value="{app/Data/Article}">
+							<layoutData>
+								<FlexItemData growFactor="1"/>
+							</layoutData>
+						</Input>
+					</items>
+				</FlexBox>
+			</Panel-->
+		</content>
+		<footer>
+			<core:Fragment
+				fragmentName="de.arvato.GRModul10.fragment.Footer" type="XML" />
+		</footer>
+	</Page>
+</mvc:View>

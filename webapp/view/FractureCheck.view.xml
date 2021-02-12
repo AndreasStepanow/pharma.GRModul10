@@ -1,0 +1,43 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:tnt="sap.tnt" controllerName="de.arvato.GRModul10.controller.FractureCheck" displayBlock="true">
+	<Page id="page" title="FractureCheck" showNavButton="true" navButtonPress="onNavButtonPress">
+		<headerContent/>
+		<content>
+			<Panel>
+				<f:SimpleForm>
+					<f:content>
+						<Label text="{i18n>SumCheck.Pallet}"/>
+						<Input id="idFracturePalIDInput" value="{app>/Data/PalID}" submit="onFracturePalIDInputSubmit" editable="{app>/State/FracturePalIDInputEditable}"/>
+						<Label text="{i18n>SumCheck.MasterCarton}"/>
+						<FlexBox justifyContent="SpaceBetween">
+							<items>
+								<Input id="idFractureMacIDInput" value="{app>/Data/MacID}" submit="onFractureMacIDInputSubmit" editable="{app>/State/FractureMasterCartonInputEditable}">
+									<layoutData>
+										<FlexItemData growFactor="1"/>
+									</layoutData>
+								</Input>
+								<Button icon="sap-icon://touch" press="onInputMacIdButtonPress" text="{i18n>FractureCheck.InputMacIdButton}" type="Accept"/>
+							</items>
+						</FlexBox>
+						<Label text="{i18n>SumCheck.SerialNumber}"/>
+						<Input id="idFractureSerialIDInput" value="{app>/Data/FractureSerialID}" submit="onFractureSerialIDInputSubmit" editable="{app>/State/FractureSerialIDInputEditable}"/>
+					</f:content>
+				</f:SimpleForm>
+				<FlexBox justifyContent="Center">
+					<items>
+						<Button press="onBookFractureSerialButtonPress" text="{i18n>FractureCheck.BookButton}"/>
+					</items>
+				</FlexBox>
+				<Panel>
+					<ScrollContainer height="15em" width="100%" vertical="true">
+						<List items="{app>/Data/FractureSerial}" delete="onFractureSerialDelete" mode="Delete">
+							<StandardListItem title="{app>Number}"/>
+						</List>
+					</ScrollContainer>
+				</Panel>
+			</Panel>
+		</content>
+		<footer>
+			<core:Fragment fragmentName="de.arvato.GRModul10.fragment.Footer" type="XML"/>
+		</footer>
+	</Page>
+</mvc:View>
