@@ -269,7 +269,7 @@ sap.ui.define([
 									Number: oSerial.Sernr
 								});
 								
-								oPallet.setSerialFracture(oSerial.Sernr);
+								oPallet.setSerialFracture(oSerial.Sernr, true);
 							}
 						});
 
@@ -304,7 +304,7 @@ sap.ui.define([
 
 				var oPallet = this.getModel("app").getProperty("/Data/pallet");
 				if (oPallet.isSerialExist(sSerialLocal)) {
-					oPallet.setSerialFracture(sSerialLocal);
+					oPallet.setSerialFracture(sSerialLocal, true);
 
 					var aFractureSerial = this.getModel("app").getProperty("/Data/FractureSerial");
 					var oFoundSerial = aFractureSerial.find(function (oLocSerial) {
@@ -352,6 +352,9 @@ sap.ui.define([
 			});
 
 			this.getModel("app").setProperty("/Data/FractureSerial", aFractureSerial);
+			
+			var oPallet = this.getModel("app").getProperty("/Data/pallet");
+			oPallet.setSerialFracture(oObject.Number, false);
 		},
 
 		showMessageDiffPalAndFrcMenge: function (oContext) {

@@ -755,6 +755,17 @@ sap.ui.define([
 						this.getModel("erp").remove(sPath, {
 							groupId: sGroup
 						});
+						
+						if (oSerial.macId) {
+							sPath = this.getModel("erp").createKey("/SerialAddSet", {
+								Guid: oSerial.Guid,
+								Type: "MACID"
+							});
+							this.getModel("erp").remove(sPath, {
+								groupId: sGroup
+							});
+						}
+						
 					}
 
 				}.bind(this));

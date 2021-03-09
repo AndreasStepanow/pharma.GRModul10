@@ -93,10 +93,10 @@ sap.ui.define([
 			}
 		},
 
-		setSerialFracture: function (sSerial) {
+		setSerialFracture: function (sSerial, bFracture) {
 			var oSer = this.getSer(sSerial);
 			if (oSer) {
-				oSer.fracture = true;
+				oSer.fracture = bFracture;
 			}
 		},
 
