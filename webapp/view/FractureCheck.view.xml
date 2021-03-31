@@ -1,4 +1,5 @@
-<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:tnt="sap.tnt" controllerName="de.arvato.GRModul10.controller.FractureCheck" displayBlock="true">
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:tnt="sap.tnt"
+	controllerName="de.arvato.GRModul10.controller.FractureCheck" displayBlock="true">
 	<Page id="page" title="FractureCheck" showNavButton="true" navButtonPress="onNavButtonPress">
 		<headerContent/>
 		<content>
@@ -6,11 +7,13 @@
 				<f:SimpleForm>
 					<f:content>
 						<Label text="{i18n>SumCheck.Pallet}"/>
-						<Input id="idFracturePalIDInput" value="{app>/Data/PalID}" submit="onFracturePalIDInputSubmit" editable="{app>/State/FracturePalIDInputEditable}"/>
-						<Label text="{i18n>SumCheck.MasterCarton}"/>
+						<Input id="idFracturePalIDInput" value="{app>/Data/PalID}"
+							submit="onFracturePalIDInputSubmit" editable="{app>/State/FracturePalIDInputEditable}"/>
+						<Label class="sapUiResponsiveMargin" text="{i18n>FractureCheck.MasterCarton}"></Label>
 						<FlexBox justifyContent="SpaceBetween">
 							<items>
-								<Input id="idFractureMacIDInput" value="{app>/Data/MacID}" submit="onFractureMacIDInputSubmit" editable="{app>/State/FractureMasterCartonInputEditable}">
+								<Input id="idFractureMacIDInput" value="{app>/Data/MacID}" submit="onFractureMacIDInputSubmit"
+									editable="{app>/State/FractureMasterCartonInputEditable}">
 									<layoutData>
 										<FlexItemData growFactor="1"/>
 									</layoutData>
@@ -19,7 +22,8 @@
 							</items>
 						</FlexBox>
 						<Label text="{i18n>SumCheck.SerialNumber}"/>
-						<Input id="idFractureSerialIDInput" value="{app>/Data/FractureSerialID}" submit="onFractureSerialIDInputSubmit" editable="{app>/State/FractureSerialIDInputEditable}"/>
+						<Input id="idFractureSerialIDInput" value="{app>/Data/FractureSerialID}" submit="onFractureSerialIDInputSubmit"
+							editable="{app>/State/FractureSerialIDInputEditable}"/>
 					</f:content>
 				</f:SimpleForm>
 				<FlexBox justifyContent="Center">

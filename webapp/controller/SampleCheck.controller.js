@@ -113,14 +113,23 @@ sap.ui.define([
 
 			this.readBarcode(sMacID).then(
 				function (oData) {
+					var sSSCC = oData.SSCC ? oData.SSCC : sMacID;
+					if (!this.isSSCCvalid(sSSCC)) {
+						sap.m.MessageToast.show(this.getResourceBundle().getText("Message.SSCCNotValid", [sSSCC, 18, sSSCC.length]));
+					} else {
 					this.processAfterMacIDInput({
-						Value: oData.SSCC ? oData.SSCC : sMacID
+						Value: sSSCC
 					});
+					}
 				}.bind(this),
 				function () {
-					this.processAfterMacIDInput({
-						Value: sMacID
-					});
+					if (!this.isSSCCvalid(sMacID)) {
+						sap.m.MessageToast.show(this.getResourceBundle().getText("Message.SSCCNotValid", [sMacID, 18, sMacID.length]));
+					} else {
+						this.processAfterMacIDInput({
+							Value: sMacID
+						});
+					}
 				}.bind(this));
 
 		},

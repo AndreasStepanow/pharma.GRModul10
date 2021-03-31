@@ -9,49 +9,58 @@ sap.ui.define([
 	return BaseController.extend("de.arvato.GRModul10.controller.Main", {
 
 		onInit: function () {
-			
+
 			this.getOwnerComponent().setController(this);
-			
+
 			this.initMessageManager();
 			this.getView().onAfterRendering = this._onAfterRenderingView.bind(this);
 
-			// // HomeButton abfangen!
-			// if (sap.ui.getCore().byId("homeBtn")) {
-			// 	sap.ui.getCore().byId("homeBtn").attachPress(this.onPressHomeBtn.bind(this));
-			// 	var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-			// 	oRouter.attachRouteMatched(this.attachRouteMatched.bind(this));
-			// }
+			// HomeButton abfangen!
+			var oHomeBtn = sap.ui.getCore().byId("homeBtn");
+			if (oHomeBtn ) {
+				this._onPressHomeBtn = this.onPressHomeBtn.bind(this);
+				oHomeBtn.attachPress(this._onPressHomeBtn);
+				var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+				oRouter.attachRouteMatched(this.attachRouteMatched.bind(this));
+			}
 		},
 
-		// onPressHomeBtn: function (oEvent) {
+		onPressHomeBtn: function (oEvent) {
 
-		// 	var sCurrentRoute = this.getModel("app").getProperty("/CurrentRoute");
-		// 	var aRelevantRoutes = ["RouteSumCheck", "RouteSampleCheck", "RouteFractureCheck"];
-		// 	if (aRelevantRoutes.indexOf(sCurrentRoute) > -1) {
-		// 		var oQuant = {
-		// 			Client: this.getModel("app").getProperty("/Data/Client"),
-		// 			Zbetrst: this.getModel("app").getProperty("/Data/Zbetrst"),
-		// 			Wenum: this.getModel("app").getProperty("/Data/Tanum")
-		// 		};
+			var sCurrentRoute = this.getModel("app").getProperty("/CurrentRoute");
 
-		// 		this.findQuant(oQuant).then(function (aValues) {
-		// 			var oWHQuant = aValues.results.length > 0 ? aValues.results[0] : null;
-		// 			oWHQuant.Skzua = "X";
-		// 			oWHQuant.Spgru = "7";
-		// 			if (oWHQuant) {
-		// 				this.updateQuant(oWHQuant);
-		// 			}
-		// 		}.bind(this));
+			this.handleAbort({
+				Tanum: this.getModel("app").getProperty("/Data/Tanum"),
+				Text: this.getResourceBundle().getText("General.GoToHome", [sCurrentRoute])
+			});
 
-		// 		this.writeGRErrorLog({
-		// 			Tanum: this.getModel("app").getProperty("/Data/Tanum"),
-		// 			Text: this.getResourceBundle().getText("General.GoToHome", [sCurrentRoute])
-		// 		});
-		// 	}
-			
-		// 	oEvent.getSource().detachPress(this.onPressHomeBtn);
-		// 	oEvent.preventDefault();
-		// },
+			// 	var sCurrentRoute = this.getModel("app").getProperty("/CurrentRoute");
+			// 	var aRelevantRoutes = ["RouteSumCheck", "RouteSampleCheck", "RouteFractureCheck"];
+			// 	if (aRelevantRoutes.indexOf(sCurrentRoute) > -1) {
+			// 		var oQuant = {
+			// 			Client: this.getModel("app").getProperty("/Data/Client"),
+			// 			Zbetrst: this.getModel("app").getProperty("/Data/Zbetrst"),
+			// 			Wenum: this.getModel("app").getProperty("/Data/Tanum")
+			// 		};
+
+			// 		this.findQuant(oQuant).then(function (aValues) {
+			// 			var oWHQuant = aValues.results.length > 0 ? aValues.results[0] : null;
+			// 			oWHQuant.Skzua = "X";
+			// 			oWHQuant.Spgru = "7";
+			// 			if (oWHQuant) {
+			// 				this.updateQuant(oWHQuant);
+			// 			}
+			// 		}.bind(this));
+
+			// 		this.writeGRErrorLog({
+			// 			Tanum: this.getModel("app").getProperty("/Data/Tanum"),
+			// 			Text: this.getResourceBundle().getText("General.GoToHome", [sCurrentRoute])
+			// 		});
+			// 	}
+
+			oEvent.getSource().detachPress(this._onPressHomeBtn);
+			oEvent.preventDefault();
+		},
 
 		_onAfterRenderingView: function (oEvent) {
 
@@ -125,7 +134,7 @@ sap.ui.define([
 		onTanumSubmit: function (oTanumSubmitEvent) {
 
 			var sTanum = oTanumSubmitEvent.getParameter("value");
-			if(sTanum.length > 10){
+			if (sTanum.length > 10) {
 				sTanum = sTanum.substr(3, 10);
 			}
 

@@ -111,10 +111,19 @@ sap.ui.define([
 
 			this.readBarcode(sPalID).then(
 				function (oData) {
-					fnProcess(oData.SSCC ? oData.SSCC : sPalID);
+					var sSSCC = oData.SSCC ? oData.SSCC : sPalID;
+					if (!this.isSSCCvalid(sSSCC)) {
+						sap.m.MessageToast.show(this.getResourceBundle().getText("Message.SSCCNotValid", [sSSCC, 18, sSSCC.length]));
+					} else {
+						fnProcess(sSSCC);
+					}
 				}.bind(this),
 				function () {
-					fnProcess(sPalID);
+					if (!this.isSSCCvalid(sPalID)) {
+						sap.m.MessageToast.show(this.getResourceBundle().getText("Message.SSCCNotValid", [sPalID, 18, sPalID.length]));
+					} else {
+						fnProcess(sPalID);	
+					}
 				}.bind(this));
 		},
 

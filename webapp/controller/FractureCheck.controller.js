@@ -187,7 +187,6 @@ sap.ui.define([
 		onFracturePalIDInputSubmit: function (oSubmitEvent) {
 
 			var sPalID = oSubmitEvent.getParameter("value");
-
 			var fnProcess = function (sPalID1) {
 				this.getView().setBusy(true);
 				Promise.all([
@@ -224,7 +223,7 @@ sap.ui.define([
 							this.getModel("app").setProperty("/Data/pallet", oPallet);
 							this.getModel("app").setProperty("/State/FractureSerialIDInputEditable", true);
 							//this.getModel("app").setProperty("/State/FracturePalIDInputEditable", false);
-							
+
 							this.getView().byId("idFractureSerialIDInput").focus();
 						}
 
@@ -242,16 +241,29 @@ sap.ui.define([
 
 			this.readBarcode(sPalID).then(
 				function (oData) {
-					fnProcess(oData.SSCC ? oData.SSCC : sPalID);
+					var sSSCC = oData.SSCC ? oData.SSCC : sPalID;
+					if (!this.isSSCCvalid(sSSCC)) {
+						sap.m.MessageToast.show(this.getResourceBundle().getText("Message.SSCCNotValid", [sSSCC, 18, sSSCC.length]));
+					} else {
+						fnProcess(sSSCC);
+					}
 				}.bind(this),
 				function () {
-					fnProcess(sPalID);
+					if (!this.isSSCCvalid(sPalID)) {
+						sap.m.MessageToast.show(this.getResourceBundle().getText("Message.SSCCNotValid", [sPalID, 18, sPalID.length]));
+					} else {
+						fnProcess(sPalID);
+					}
 				}.bind(this));
 
 		},
 
 		onFractureMacIDInputSubmit: function (oSubmitEvent) {
 			var sMacId = oSubmitEvent.getParameter("value");
+			if (!this.isSSCCvalid(sMacId)) {
+				sap.m.MessageToast.show(this.getResourceBundle().getText("Message.SSCCNotValid", [sMacId, 18, sMacId.length]));
+				return;
+			}
 
 			var fnProcess = function (sMacId1) {
 				var oPallet = this.getModel("app").getProperty("/Data/pallet");
@@ -268,7 +280,7 @@ sap.ui.define([
 								aFractureSerial.push({
 									Number: oSerial.Sernr
 								});
-								
+
 								oPallet.setSerialFracture(oSerial.Sernr, true);
 							}
 						});
@@ -352,7 +364,7 @@ sap.ui.define([
 			});
 
 			this.getModel("app").setProperty("/Data/FractureSerial", aFractureSerial);
-			
+
 			var oPallet = this.getModel("app").getProperty("/Data/pallet");
 			oPallet.setSerialFracture(oObject.Number, false);
 		},

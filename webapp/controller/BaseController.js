@@ -19,6 +19,14 @@ sap.ui.define([
 	return Controller.extend("de.arvato.GRModul10.controller.BaseController", {
 
 		formatter: Formatter,
+		
+		isSSCCvalid: function (sSSCC) {
+			if(sSSCC && sSSCC.length === 18){
+				return true;
+			} else {
+				return false;
+			}
+		},
 
 		attachRouteMatched: function (oEvent) {
 			this.getModel("app").setProperty("/CurrentRoute", oEvent.getParameter("name"));
@@ -406,6 +414,25 @@ sap.ui.define([
 
 				this.getModel("erp").update(oPath, oQuant, {
 					success: function (oData) {
+						resolve(oData);
+					}.bind(this),
+					error: function (oError) {
+						reject(oError);
+					}.bind(this)
+				});
+			}.bind(this));
+		},
+		
+		handleAbort: function (oContext) {
+
+			return new Promise(function (resolve, reject) {
+				this.getModel("erp").callFunction("/HandleModul10Abort", {
+					method: "POST",
+					urlParameters: {
+						Tanum: oContext.Tanum,
+						Text: oContext.Text ? oContext.Text : ""
+					},
+					success: function (oData, response) {
 						resolve(oData);
 					}.bind(this),
 					error: function (oError) {
