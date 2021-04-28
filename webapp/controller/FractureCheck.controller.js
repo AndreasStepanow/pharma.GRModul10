@@ -260,11 +260,6 @@ sap.ui.define([
 
 		onFractureMacIDInputSubmit: function (oSubmitEvent) {
 			var sMacId = oSubmitEvent.getParameter("value");
-			if (!this.isSSCCvalid(sMacId)) {
-				sap.m.MessageToast.show(this.getResourceBundle().getText("Message.SSCCNotValid", [sMacId, 18, sMacId.length]));
-				return;
-			}
-
 			var fnProcess = function (sMacId1) {
 				var oPallet = this.getModel("app").getProperty("/Data/pallet");
 				if (oPallet.macList.length > 0) {
@@ -301,11 +296,21 @@ sap.ui.define([
 
 			this.readBarcode(sMacId).then(
 				function (oData) {
-					fnProcess(oData.SSCC ? oData.SSCC : sMacId);
+					var sSSCC = oData.SSCC ? oData.SSCC : sMacId;
+					if (!this.isSSCCvalid(sSSCC)) {
+						sap.m.MessageToast.show(this.getResourceBundle().getText("Message.SSCCNotValid", [sSSCC, 18, sSSCC.length]));
+					} else {
+						fnProcess(sSSCC);
+					}
 				}.bind(this),
 				function () {
-					fnProcess(sMacId);
+					if (!this.isSSCCvalid(sMacId)) {
+						sap.m.MessageToast.show(this.getResourceBundle().getText("Message.SSCCNotValid", [sMacId, 18, sMacId.length]));
+					} else {
+						fnProcess(sMacId);
+					}
 				}.bind(this));
+
 		},
 
 		onFractureSerialIDInputSubmit: function (oSubmitEvent) {
